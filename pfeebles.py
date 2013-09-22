@@ -14,6 +14,7 @@ class Effect(object):
   def cha(self): return 0
 
   def hp(self): return 0
+  def hit_dice(self): return []
   def touch_ac(self): return 0
   def flat_ac(self): return 0
 
@@ -27,16 +28,19 @@ class Effect(object):
   def melee_bonus(self): return 0
   def ranged_bonus(self): return 0
 
+class CharClass(Effect):
+  def __init__(self, name, level=1):
+    self.name = name
+    self.level = level
+
+  @property
+  def name(self): return "%s (level %d)" % (self.name, self.level)
+
 class Character(object):
   def __init__(self, name):
     self._name = name
-    self._effects = []
-    self.hit_dice = []
+    self.effects = []
     self._wounds = 0
-
-  @property
-  def effects(self):
-    return self._effects
 
   @property
   def name(self): return self._name
