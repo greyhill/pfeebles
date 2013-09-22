@@ -1,11 +1,14 @@
+import pfeebles
+
 class RolledAbilities(object):
-  def __init__(self, str=0, dex=0, con=0, int=0, wis=0, cha=0):
-    self.str = str
-    self.dex = dex
-    self.con = con
-    self.int = int
-    self.wis = wis
-    self.cha = cha
+  def __init__(self, str=None, dex=None, con=None, 
+      int=None, wis=None, cha=None):
+    self.str = str if str is not None else pfeebles.get_int('Rolled STR')
+    self.dex = dex if dex is not None else pfeebles.get_int('Rolled DEX')
+    self.con = con if con is not None else pfeebles.get_int('Rolled CON')
+    self.wis = wis if wis is not None else pfeebles.get_int('Rolled WIS')
+    self.int = int if int is not None else pfeebles.get_int('Rolled INT')
+    self.cha = cha if cha is not None else pfeebles.get_int('Rolled CHA')
 
   def __str__(self): return "Rolled ability scores"
 

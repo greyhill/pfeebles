@@ -63,9 +63,10 @@ class AbilityModifier(object):
     return char.dex_bonus
 
 class Character(object):
-  def __init__(self, name, roll):
+  def __init__(self, name, race, roll):
     self.name = name
     self.roll = roll
+    self.race = race
     self.classes = []
     self.traits = []
     self.feats = []
@@ -81,7 +82,7 @@ class Character(object):
 
   @property
   def attribute_mods(self):
-    tr = [self.roll, BaseModifier(), AbilityModifier()]
+    tr = [self.roll, BaseModifier(), AbilityModifier(), self.race]
     tr += self.classes
     for src in self.classes + self.traits + self.feats:
       tr += src.attribute_mods
