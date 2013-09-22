@@ -16,4 +16,3 @@ class RolledAbilities(object):
   def mod_wis(self, c): return self.wis
   def mod_cha(self, c): return self.cha
 
-

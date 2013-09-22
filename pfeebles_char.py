@@ -64,16 +64,16 @@ class AbilityModifier(object):
 
 class Character(object):
   def __init__(self, name, roll):
-    self._name = name
-    self._roll = roll
-    self._wounds = 0
+    self.name = name
+    self.roll = roll
     self.classes = []
+    self.traits = []
+    self.feats = []
 
-  @property
-  def name(self): return self._name
-
-  @property
-  def roll(self): return self._roll
+    self.permanent_effects = []
+    self.daily_effects = []
+    self.combat_effects = []
+    self.round_effects = []
 
   @property
   def stats(self):
@@ -81,7 +81,11 @@ class Character(object):
 
   @property
   def attribute_mods(self):
-    return [self.roll, BaseModifier(), AbilityModifier()] + self.classes
+    tr = [self.roll, BaseModifier(), AbilityModifier()]
+    tr += self.classes
+    for src in self.classes + self.traits + self.feats:
+      tr += src.attribute_mods
+    return tr
 
   def __getattr__(self, name):
     return getattr(self.stats, name).value
