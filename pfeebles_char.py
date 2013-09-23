@@ -76,6 +76,13 @@ class Character(object):
     self.combat_effects = []
     self.round_effects = []
 
+  def add_level(self, klass):
+    for c in self.classes:
+      if c.__class__ is klass:
+        c.level_up()
+        return
+    self.classes.append(klass())
+
   @property
   def stats(self):
     return Stats(self)
