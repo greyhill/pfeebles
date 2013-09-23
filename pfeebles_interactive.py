@@ -3,6 +3,7 @@ class ConsoleEngine(object):
     d = int(raw_input("%s: " % prompt))
     while d < min or d > max:
       d = int(raw_input("%s: " % prompt))
+    return d
 
   def get_choice(self, prompt, options):
     while True:
