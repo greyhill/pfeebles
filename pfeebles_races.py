@@ -1,12 +1,14 @@
 import pfeebles
 
-class Orc(object):
+class HalfOrc(object):
   def __init__(self, bonus=None):
     bonus_to = [ 'str', 'con', 'dex', 'wis', 'int', 'cha' ]
     if bonus is None or bonus not in bonus_to:
-      b = pfeebles.get_choice("Orc racial bonus:",
+      b = pfeebles.get_choice("Half-orc racial bonus:",
           ['STR', 'CON', 'DEX', 'WIS', 'INT', 'CHA'])
       self.bonus = bonus_to[b]
+
+  def __str__(self): return 'Half-orc bonus'
 
   def mod_str(self, char): return 2 if self.bonus == 'str' else 0
   def mod_con(self, char): return 2 if self.bonus == 'con' else 0
