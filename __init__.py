@@ -9,3 +9,5 @@ import pfeebles_feats as feats
 from pfeebles_interactive import ConsoleEngine
 from pfeebles_interactive import get_int, get_choice, set_engine
 
+from pfeebles_dice import d4, d6, d8, d10, d12, d20
+
